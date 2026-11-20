@@ -1,0 +1,46 @@
+
+> auth-service@1.0.0 test:smoke
+> jest tests/smoke --testTimeout=30000
+
+FAIL tests/smoke/auth.test.ts
+  AuthService Smoke Tests
+    GET /health
+      √ should return 200 with status "ok" (10 ms)
+    POST /login - Success
+      × should return 200 with user data for valid credentials (test@test.com) (23 ms)
+      √ should return 200 with user data for valid admin credentials (admin@test.com) (6 ms)
+    POST /login - Invalid Credentials
+      √ should return 401 for invalid password (5 ms)
+      √ should return 401 for non-existent user (4 ms)
+    POST /login - Blocked User
+      √ should return 403 for blocked user (blocked@test.com) (3 ms)
+    POST /login - Missing/Invalid Input
+      √ should return 400 when password is missing (2 ms)
+      √ should return 400 when email is missing (4 ms)
+      √ should return 400 for empty request body (3 ms)
+    Error Handling
+      √ should return 404 for non-existent endpoint (2 ms)
+      √ should return 404 for POST to non-existent endpoint (2 ms)
+
+  ● AuthService Smoke Tests › POST /login - Success › should return 200 with user data for valid credentials (test@test.com)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 403
+
+    [0m [90m 68 |[39m       })[33m;[39m
+     [90m 69 |[39m
+    [31m[1m>[22m[39m[90m 70 |[39m       expect(response[33m.[39mstatus)[33m.[39mtoBe([35m200[39m)[33m;[39m
+     [90m    |[39m                               [31m[1m^[22m[39m
+     [90m 71 |[39m
+     [90m 72 |[39m       [36mconst[39m data [33m=[39m ([36mawait[39m response[33m.[39mjson()) [36mas[39m [33mLoginSuccessResponse[39m[33m;[39m
+     [90m 73 |[39m       expect(data[33m.[39msuccess)[33m.[39mtoBe([36mtrue[39m)[33m;[39m[0m
+
+      at Object.<anonymous> (tests/smoke/auth.test.ts:70:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 10 passed, 11 total
+Snapshots:   0 total
+Time:        2.617 s
+Ran all test suites matching /tests\\smoke/i.

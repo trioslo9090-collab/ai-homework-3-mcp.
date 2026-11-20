@@ -1,0 +1,29 @@
+
+> auth-service@1.0.0 test:smoke
+> jest tests/smoke --testTimeout=30000
+
+PASS tests/smoke/auth.test.ts
+  AuthService Smoke Tests
+    GET /health
+      √ should return 200 with status "ok" (13 ms)
+    POST /login - Success
+      √ should return 200 with user data for valid credentials (test@test.com) (25 ms)
+      √ should return 200 with user data for valid admin credentials (admin@test.com) (7 ms)
+    POST /login - Invalid Credentials
+      √ should return 401 for invalid password (6 ms)
+      √ should return 401 for non-existent user (6 ms)
+    POST /login - Blocked User
+      √ should return 403 for blocked user (blocked@test.com) (5 ms)
+    POST /login - Missing/Invalid Input
+      √ should return 400 when password is missing (3 ms)
+      √ should return 400 when email is missing (4 ms)
+      √ should return 400 for empty request body (4 ms)
+    Error Handling
+      √ should return 404 for non-existent endpoint (2 ms)
+      √ should return 404 for POST to non-existent endpoint (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        2.67 s
+Ran all test suites matching /tests\\smoke/i.
